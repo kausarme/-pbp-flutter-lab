@@ -61,6 +61,17 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void _decrementCounter() {
+    setState(() {
+      // This call to setState tells the Flutter framework that something has
+      // changed in this State, which causes it to rerun the build method below
+      // so that the display can reflect the updated values. If we changed
+      // _counter without calling setState(), then the build method would not be
+      // called again, and so nothing would appear to happen.
+      if(_counter != 0) _counter--;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -95,21 +106,55 @@ class _MyHomePageState extends State<MyHomePage> {
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  _counter % 2 == 0
+                      ? const Text(
+                          'GENAP',
+                          style: TextStyle(color: Colors.red),
+                        )
+                      : const Text(
+                          'GANJIL',
+                          style: TextStyle(color: Colors.blue),
+                        ),
+                  Text(
+                    '$_counter',
+                    style: Theme.of(context).textTheme.headline4,
+                  ),
+                ],
+              ),
             ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      bottomSheet: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Padding(
+            padding: EdgeInsets.all(16.0),
+            child: Visibility(
+              visible: (_counter > 0),
+              child: FloatingActionButton(
+                onPressed: _decrementCounter,
+                tooltip: 'Decrement',
+                child: const Icon(Icons.remove),
+              ),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.all(16.0),
+            child: FloatingActionButton(
+              onPressed: _incrementCounter,
+              tooltip: 'Increment',
+              heroTag: null,
+              child: const Icon(Icons.add),
+            ),
+          ),
+        ], // This trailing comma makes auto-formatting nicer for build methods.],
+      ),
     );
+    // This trailing comma makes auto-formatting nicer for build methods.
   }
 }
