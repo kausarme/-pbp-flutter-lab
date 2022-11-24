@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:counter_7/budget.dart';
+import 'package:counter_7/model/budget.dart';
 import 'package:counter_7/drawer.dart';
 
 class MyFormPage extends StatefulWidget {
@@ -32,7 +32,6 @@ class _MyFormPageState extends State<MyFormPage> {
             mainAxisSize: MainAxisSize.max,
             children: [
               Padding(
-
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
                   decoration: InputDecoration(
